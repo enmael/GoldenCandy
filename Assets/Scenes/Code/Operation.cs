@@ -1,18 +1,30 @@
+/*
+ * ============================================================
+ * 파일 이름 : Operation.cs
+ * 작성자   : enmael
+ * 생성 날짜 : 2025-10-16
+ * 설명     : 방향키로 오브젝트를 조작하고 x키로 오브젝트 삭제, 그리고 길 배열 만듬.
+ * ============================================================
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Operation : MonoBehaviour
 {
+    [Header("연결된 매니저")]
     public GameManager gameManager;
+
+    [Header("조작 관련된 변수")]
     [SerializeField] float posX = 1f;
     [SerializeField] float posY = 1f;
     [SerializeField] bool cont = false;
 
+    [Header("추가 관련 변수")]
     [SerializeField] Vector3 pos;
     [SerializeField] GameObject createdObject;
 
-    private int number = 0;
 
     private bool hasSpawned = false; // 한 번 생성 여부 체크
 
@@ -51,11 +63,13 @@ public class Operation : MonoBehaviour
 
         // 생성된 오브젝트 인스턴스를 변수에 저장
         GameObject newObj = Instantiate(createdObject, spawnPos, Quaternion.identity);
-
+        string baseName = createdObject.name;
+        newObj.name = baseName + "_" + gameManager.DirectionsNumber;
         // 배열에 생성된 오브젝트 인스턴스를 저장
-        gameManager.DirectionsArray[number] = newObj;
+        gameManager.DirectionsArray[gameManager.DirectionsNumber] = newObj;
+        
 
-        number++;
+        gameManager.DirectionsNumber++;
     }
 
      void OnTriggerStay2D(Collider2D collision)

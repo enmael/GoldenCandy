@@ -1,29 +1,42 @@
+/*
+ * ============================================================
+ * 파일 이름 : GameManager.cs
+ * 작성자   : enmael
+ * 생성 날짜 : 2025-10-16
+ * 설명     : 중복되어 사용되는 게임 오브젝트를 관리하는 GameManager 클래스.
+ * ============================================================
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public GameObject startUiObject; //시작화면 ui
-    [SerializeField] public GameObject puzzleObject;  // 미리 배치된 퍼즐 게임 오브젝트
-    [SerializeField] public GameObject operationobject; // 조작버튼 오브젝트
-    [SerializeField] public GameObject scannerObject;  //맵에 추가되어 있는 퍼즐 오브젝트를 스캔하는 오브젝트
+[Header("UI")]
+[SerializeField] public GameObject startUiObject;     // 시작화면 UI
+[SerializeField] public GameObject gameUi;            // 게임 UI
 
-    [SerializeField] public GameObject[] puzzleArray;  //스캔된 퍼즐 오브젝트를 저장하는 배열
-    [SerializeField] public Vector3[] puzzleArrayTransform; //스캔된 퍼즐 오브젝트의 좌표값을 저장하는 배열
-    [SerializeField] public int arrayScize = 122;   // puzzleArray,puzzleArrayTransform의 배열값을 저장하는 배열
+[Header("게임 오브젝트")]
+[SerializeField] public GameObject puzzleObject;      // 미리 배치된 퍼즐 오브젝트
+[SerializeField] public GameObject candy;             // 캔디 오브젝트
+[SerializeField] public GameObject operationobject;   // 조작버튼 오브젝트
+[SerializeField] public GameObject scannerObject;     // 퍼즐 스캔용 오브젝트
+[SerializeField] public GameObject inspection;        // 검사 오브젝트
 
-    [SerializeField] public bool puzzleClear = false; //스캔이 끝났는지 확인하는 변수 나중에 이름 변경 예정
+[Header("퍼즐 관련")]
+[SerializeField] public GameObject[] puzzleArray;         // 스캔된 퍼즐 오브젝트 배열
+[SerializeField] public Vector3[] puzzleArrayTransform;   // 스캔된 퍼즐 좌표값 배열
+[SerializeField] public int arrayScize = 122;             // 배열 크기
 
-    [SerializeField] public bool shufflePossible = true;  //수정중 
+[Header("길찾기 관련")]
+[SerializeField] public GameObject[] directionsArray;     // 길찾기용 배열
+[SerializeField] public GameObject directionsMonster;     // 길찾기용 몬스터
+[SerializeField] public int directionsNumber;              // 길찾기용 인덱스 번호
 
-    [SerializeField] public GameObject[] directionsArray; //길찾기용 배열
-
-    [SerializeField] public GameObject gameUi; //게임ui
-
-    [SerializeField] public GameObject directionsMonster; //길찾는 몬스터
-
+[Header("상태 변수")]
+[SerializeField] public bool puzzleClear = false;         // 스캔 완료 여부 (이름 변경 예정)
+[SerializeField] public bool shufflePossible = true;      // 셔플 가능 여부
+[SerializeField] public bool sortInspection = false;      // 정렬 검사 여부
 
     void Start()
     {
@@ -35,77 +48,97 @@ public class GameManager : MonoBehaviour
     public GameObject StartUiObject
     {
         get { return startUiObject; }
-        set { value = startUiObject; }
+        set { startUiObject = value; }
     }
 
     public GameObject PuzzleObject
     {
         get { return puzzleObject; }
-        set { value = puzzleObject; }
+        set { puzzleObject = value; }
     }
 
     public GameObject Operationobject
     {
         get { return operationobject; }
-        set { value = operationobject; }
+        set { operationobject = value; }
     }
 
     public GameObject ScannerObject
     {
         get { return scannerObject; }
-        set { value = scannerObject; }
-        
+        set { scannerObject = value; }
     }
+
     public int ArrayScize
     {
         get { return arrayScize; }
-        set { value = arrayScize; }
+        set { arrayScize = value; }
     }
 
     public GameObject[] PuzzleArray
     {
         get { return puzzleArray; }
-        set { value = puzzleArray; }
-
+        set { puzzleArray = value; }
     }
 
     public Vector3[] PuzzleArrayTransform
     {
         get { return puzzleArrayTransform; }
-        set { value = puzzleArrayTransform; }
+        set { puzzleArrayTransform = value; }
     }
 
     public bool PuzzleClear
     {
         get { return puzzleClear; }
-        set { value = puzzleClear; }
-
+        set { puzzleClear = value; }
     }
-    
+
     public bool ShufflePossible
     {
         get { return shufflePossible; }
-        set { value = shufflePossible; }
-
+        set { shufflePossible = value; }
     }
-    
+
     public GameObject GameUi
     {
         get { return gameUi; }
-        set { value = gameUi; }
+        set { gameUi = value; }
     }
 
     public GameObject DirectionsMonster
     {
         get { return directionsMonster; }
-        set { value = directionsMonster; }
+        set { directionsMonster = value; }
     }
 
     public GameObject[] DirectionsArray
     {
         get { return directionsArray; }
-        set { value = directionsArray; }
-        
+        set { directionsArray = value; }
     }
 
+    public int DirectionsNumber
+    {
+        get { return directionsNumber; }
+        set { directionsNumber = value; }
+    }
+
+    public GameObject Candy
+    {
+        get { return candy; }
+        set { candy = value; }
+    }
+
+    public GameObject Inspection
+    {
+        get { return inspection; }
+        set { inspection = value; }
+    }
+
+    public bool SortInspection
+    {
+        get { return sortInspection; }
+        set { sortInspection = value; }
+    }
 }
+
