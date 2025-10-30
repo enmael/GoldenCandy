@@ -51,9 +51,18 @@ public class Inspection : MonoBehaviour
             gameManager.DirectionsArray[i] = null;
         }
         
+        for(int j = 0; j <gameManager.puzzleArray.Length; j++)
+        {
+            //if (gameManager.puzzleArray[j].active == false)
+             if (!gameManager.puzzleArray[j].activeSelf) 
+            {
+                gameManager.puzzleArray[j].SetActive(true);
+            }
+        }
         gameManager.DirectionsNumber = 0;
         gameManager.SortInspection = false;
         gameManager.Inspection.SetActive(false);
+
         
     }
 }
